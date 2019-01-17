@@ -1,4 +1,7 @@
+DESCRIPTION:
+1. Convolution without Padding
 convolution_withoutpadding matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
+
 convolution_withpadding padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
 convolution_withoutpadding_matrixmul matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
 convolution_withpadding_matrixmul padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows

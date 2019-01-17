@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <bits/stdc++.h>
+#include <fstream>
+#include <string>
+
 
 using namespace std;
 vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<float>> b);
@@ -298,6 +301,65 @@ vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<floa
 	return nmat;
 }
 
+vector<float> getVector(string a, int n)
+{
+	vector<float> inp(n);
+	ifstream file(a);
+	string content;
+	int k=0;
+	while(file >> content)
+	{
+		int m=stoi(content);
+		inp[k]=m;
+		k++;
+	}
+	return inp;
+}
+
+vector<vector<float>> getMatrix(string a, int n)
+{
+	vector<vector<float>> matrix(n,vector<float>(n,0));
+	vector<float> inp(n*n);
+	ifstream file(a);
+	string content;
+	int k=0;
+	while(file >> content)
+	{
+		int m=stoi(content);
+		//cout<< m<< "  "<< endl;
+		inp[k]=m;
+		k++;
+	}
+	k=0;
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0; j<n; j++)
+		{
+			cout << inp[k] << " "<< endl;
+			matrix[j][i]=inp[k];
+			k++;
+		}
+	}
+
+	return matrix;
+}
+
+void printVector(vector<float> vec)
+{
+	for(int i=0; i< vec.size(); i++)
+	{
+		cout<<vec[i]<<endl;
+	}
+}
+void printMatrix(vector<vector<float>> vec)
+{
+	for (int i = 0; i < vec.size(); i++) {
+	         for (int j = 0; j < vec[i].size(); j++)
+	             cout << vec[i][j] << " ";
+	         cout << endl;
+	 			}
+}
+
 // int main()
 // {
 // 	//vector<float> me={4.67f,3.45f,8.98f};
@@ -314,7 +376,7 @@ vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<floa
 // 															{ 7, -88.09, 9.89, 76, 73,91 },
 // 														{ 98.87, -388.09, 0.89, -976, -3,91 },
 // 													{ 7.87, 9.09, 3.89, 7.6, 73.9, 91 },
-// 												{ 7, -88.09, 9.89, 7.06 , 3.90 ,9.1 } };
+// 												{ 7, -88.09, 9.89, 7.06 , 3.90 ,9.1      } };
 // 	//cout << vect[2][5];
 // 	//vect=avgpooling(vect,2);
 // 	vector<vector<float>> me={{4.67,3.45,8.98},{4.67,-98,8.98},{4.67,3.45,8.98}};
@@ -327,3 +389,8 @@ vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<floa
 // 			}
 // 	return 0;
 // }
+int main()
+{
+	vector<float> vec=getVector("inputfile.txt",9);
+	printVector(vec);
+}
