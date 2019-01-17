@@ -1,0 +1,21 @@
+all:
+	g++ softmax.cpp -o softamax
+	g++ sigmoid.cpp -o sigmoid
+	g++ maxpooling.cpp -o maxpooling
+	g++ avgpooling.cpp -o avgpooling
+	g++ relu.cpp -o relu
+	g++ tanh.cpp -o tanh
+	g++ convolutionMULT.cpp -o convolutionMULT
+	g++ convolutionMULTpadding -o convolutionMULTpadding
+	g++ convolveLarge.cpp -o convolveLarge
+	g++ convolveValid.cpp -o convolveValid
+	g++ convolvePadding.cpp -o convolvePadding
+	g++ convolveWithoutPadding.cpp -o convolveWithoutPadding
+	g++ MatrixMultiply.cpp -o MatrixMultiply
+	g++ getMatrix.cpp -o getMatrix
+	g++ printVector.cpp -o printVector
+	g++ printMatrix.cpp -o printMatrix
+	g++ getVector.cpp -o getVector
+	g++ help.cpp -o helpme
+	g++ performAction.cpp -o performAction
+	g++ subtask1MAIN.cpp -o subtask1MAIN

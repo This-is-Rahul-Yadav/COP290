@@ -1,13 +1,52 @@
 DESCRIPTION:
-1. Convolution without Padding
-convolution_withoutpadding matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
+1. Convolution without padding - Input should be in the following format:
 
-convolution_withpadding padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
-convolution_withoutpadding_matrixmul matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
-convolution_withpadding_matrixmul padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
-relu vector.txt elements_number
-tanh vector.txt elements_number
-average_pooling matrix1.txt matrix1_numrows size
-max_pooling matrix1.txt matrix1_numrows size
-sigmoid vector.txt
-softmax vector.txt
+convolution_withoutpadding input_matrix.txt input_matrix_numrows kernel_matrix.txt kernel_matrix_numrows
+
+
+2. Convolution with padding - Input should be in the following format:
+
+convolution_withpadding padsize input_matrix.txt input_matrix_numrows kernel_matrix.txt kernel_matrix_numrows
+
+
+1. Convolution without padding - Input should be in the following format:
+
+convolution_withoutpadding_matrixmul input_matrix.txt input_matrix_numrows kernel_matrix.txt kernel_matrix_numrows
+
+
+
+
+1. Convolution without Padding - Input should be in the following format:
+
+convolution_withpadding_matrixmul padsize input_matrix.txt input_matrix_numrows kernel_matrix.txt kernel_matrix_numrows
+
+
+
+1. Convolution without Padding - Input should be in the following format:
+
+relu input_matrix.txt input_matrix_numrows
+
+
+
+1. Convolution without Padding - Input should be in the following format:
+
+tanh input_matrix.txt input_matrix_numrows
+
+
+
+1. Convolution without Padding - Input should be in the following format:
+
+average_pooling input_matrix.txt input_matrix_numrows size
+
+1. Convolution without Padding - Input should be in the following format:
+
+max_pooling input_matrix.txt input_matrix_numrows size
+
+1. Convolution without Padding - Input should be in the following format:
+
+sigmoid input_vector.txt input_vector_size
+
+
+1. Convolution without Padding - Input should be in the following format:
+
+softmax input_vector.txt input_vector_size

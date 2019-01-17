@@ -349,6 +349,7 @@ void printVector(vector<float> vec)
 		cout<<vec[i]<<endl;
 	}
 }
+
 void printMatrix(vector<vector<float>> vec)
 {
 	for (int i = 0; i < vec.size(); i++) {
