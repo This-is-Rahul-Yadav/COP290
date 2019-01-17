@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
-#include <type_traits>
 #include <bits/stdc++.h>
 
 using namespace std;
 vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<float>> b);
+
 vector<float> softmax(vector<float> v)
 {
 	float sum=0;
@@ -184,21 +184,96 @@ vector<vector<float> > convolveMULTPadding(vector<vector<float> > input, vector<
 		return convolutionMULT(paddedInput, filter);
 	}
 
-vector<vector<float>> flipper(vector<vector<float>> a)
+vector<vector<float> > convolveLarge (vector<vector<float> > input, vector<vector<float> > filter)
 {
-	vector<vector<float>> matrix;
+	    int N = input.size();
+	    int f = filter.size();
 
-	for(int i=a.size()-1; i>=0; i--)
-	{
-		vector<float> vect;
-		for(int j=a[0].size()-1; j>=0;j--)
-		{
-			vect.push_back(a[i][j]);
-		}
-		matrix.push_back(vect);
+	    //float matrix[(n-f+1)*(n-f+1)][f*f];
+
+	    vector<vector<float> > output(N+f-1, vector<float>(N+f-1));
+
+	    for(int i=0; i< output.size();i++){
+	        for(int j=0; j< output[i].size();j++){
+	            for(int m=0; m<=i; m++){
+	                for(int n=0; n<=j; n++){
+
+	                    if (m<N && n<N && i-m<f && j-n<f)
+	                    output[i][j] += input[m][n] * filter[i-m][j-n];
+	                }
+	            }
+	        }
+	    }
+
+	    return output;
 	}
-	return matrix;
+
+vector<vector<float> > convolveValid (vector<vector<float> > input, vector<vector<float> > filter)
+{
+    int N = input.size();
+    int f = filter.size();
+
+    //float matrix[(n-f+1)*(n-f+1)][f*f];
+
+    vector<vector<float> > output(N-f+1, vector<float>(N-f+1));
+
+    for(int i=0; i<= N-f;i++){
+        for(int j=0; j<= N-f;j++){
+            for(int m=0; m<f; m++){
+                for(int n=0; n<f; n++){
+
+                //    if (m<N && n<N && i-m<f && j-n<f)
+                    output[i][j] += input[m+i][n+j] * filter[m][n];
+                }
+            }
+        }
+    }
+
+    return output;
 }
+
+
+vector<vector<float> > convolvePadding(vector<vector<float> > input, vector<vector<float> > filter, int padding)
+{
+    int p = padding;
+    int N = input.size();
+    int f = filter.size();
+
+    vector<vector<float> > paddedInput(N + 2*p, vector<float>(N + 2*p));
+
+    for (int i=p; i< p+N; i++){
+        for (int j=p; j< p+N; j++){
+            paddedInput[i][j] = input[i-p][j-p];
+        }
+    }
+
+    vector<vector<float> > temp = convolveValid(paddedInput, filter);
+
+    vector<vector<float> > output(N, vector<float>(N, 0));
+
+    return temp;
+}
+
+vector<vector<float> > convolveWithoutPadding(vector<vector<float> > input, vector<vector<float> > filter)
+{
+    return convolvePadding(input, filter, 0);
+}
+
+// vector<vector<float>> flipper(vector<vector<float>> a)
+// {
+// 	vector<vector<float>> matrix;
+//
+// 	for(int i=a.size()-1; i>=0; i--)
+// 	{
+// 		vector<float> vect;
+// 		for(int j=a[0].size()-1; j>=0;j--)
+// 		{
+// 			vect.push_back(a[i][j]);
+// 		}
+// 		matrix.push_back(vect);
+// 	}
+// 	return matrix;
+// }
 
 
 vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<float>> b)
@@ -223,32 +298,32 @@ vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<floa
 	return nmat;
 }
 
-int main()
-{
-	//vector<float> me={4.67f,3.45f,8.98f};
-	//me=softmax(me);
-	//vector<float> u=sigmoid(me);
-	//cout<<"here" <<me[1] << u[1];
-
-	vector<vector<float> > in = { {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5} };
-	vector<vector<float> > ke = { {1,-2,0}, {-1,2,-1}, {1,2,0} };
-	vector<vector<float> > keFlip = { {0,2,1}, {-1,2,-1}, {0,-2,1} };
-
-	vector<vector<float> > vect{ { 1.2, -32.74, -32.73 ,3 ,5 ,67},
-															{ -87.4, -5.87, 6.98, 54,87,53 },
-															{ 7, -88.09, 9.89, 76, 73,91 },
-														{ 98.87, -388.09, 0.89, -976, -3,91 },
-													{ 7.87, 9.09, 3.89, 7.6, 73.9, 91 },
-												{ 7, -88.09, 9.89, 7.06 , 3.90 ,9.1 } };
-	//cout << vect[2][5];
-	//vect=avgpooling(vect,2);
-	vector<vector<float>> me={{4.67,3.45,8.98},{4.67,-98,8.98},{4.67,3.45,8.98}};
-	//vector<vector<float>> vec = convolutionMULT(in,ke);
-	vector<vector<float>> vec = convolveMULTPadding(in, ke, 0);
-		for (int i = 0; i < vec.size(); i++) {
-        for (int j = 0; j < vec[i].size(); j++)
-            cout << vec[i][j] << " ";
-        cout << endl;
-			}
-	return 0;
-}
+// int main()
+// {
+// 	//vector<float> me={4.67f,3.45f,8.98f};
+// 	//me=softmax(me);
+// 	//vector<float> u=sigmoid(me);
+// 	//cout<<"here" <<me[1] << u[1];
+//
+// 	vector<vector<float> > in = { {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5}, {1,2,3,4,5} };
+// 	vector<vector<float> > ke = { {1,-2,0}, {-1,2,-1}, {1,2,0} };
+// 	vector<vector<float> > keFlip = { {0,2,1}, {-1,2,-1}, {0,-2,1} };
+//
+// 	vector<vector<float> > vect{ { 1.2, -32.74, -32.73 ,3 ,5 ,67},
+// 															{ -87.4, -5.87, 6.98, 54,87,53 },
+// 															{ 7, -88.09, 9.89, 76, 73,91 },
+// 														{ 98.87, -388.09, 0.89, -976, -3,91 },
+// 													{ 7.87, 9.09, 3.89, 7.6, 73.9, 91 },
+// 												{ 7, -88.09, 9.89, 7.06 , 3.90 ,9.1 } };
+// 	//cout << vect[2][5];
+// 	//vect=avgpooling(vect,2);
+// 	vector<vector<float>> me={{4.67,3.45,8.98},{4.67,-98,8.98},{4.67,3.45,8.98}};
+// 	//vector<vector<float>> vec = convolutionMULT(in,ke);
+// 	vector<vector<float>> vec = convolveMULTPadding(in, ke, 0);
+// 		for (int i = 0; i < vec.size(); i++) {
+//         for (int j = 0; j < vec[i].size(); j++)
+//             cout << vec[i][j] << " ";
+//         cout << endl;
+// 			}
+// 	return 0;
+// }
