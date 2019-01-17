@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-
+using namespace std;
 vector<vector<float>> tanh(vector<vector<float>> a)
 {
 	int rows = a.size();

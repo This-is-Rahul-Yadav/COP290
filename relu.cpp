@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 vector<vector<float>> relu(vector<vector<float>> a)
 {
 	int rows = a.size();

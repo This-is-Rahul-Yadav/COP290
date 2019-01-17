@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
-
+using namespace std;
 
 vector<vector<float> > convolveLarge (vector<vector<float> > input, vector<vector<float> > filter)
 {

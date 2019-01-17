@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 vector<vector<float>> getMatrix(string a, int n)
 {
 	vector<vector<float>> matrix(n,vector<float>(n,0));

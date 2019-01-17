@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 vector<float> getVector(string a, int n)
 {
 	vector<float> inp(n);

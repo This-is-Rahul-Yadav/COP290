@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 vector<float> softmax(vector<float> v)
 {
 	float sum=0;

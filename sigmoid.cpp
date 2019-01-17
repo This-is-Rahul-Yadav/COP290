@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
-
+using namespace std;
 vector<float> sigmoid(vector<float> v)
 {
 	for(int i=0;i<v.size();i++)

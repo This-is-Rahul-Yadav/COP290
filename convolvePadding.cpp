@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
-
+using namespace std;
 vector<vector<float> > convolvePadding(vector<vector<float> > input, vector<vector<float> > filter, int padding)
 {
     int p = padding;

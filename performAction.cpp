@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 void performAction(string input, bool* stop){
 
     string delimiter = " ";

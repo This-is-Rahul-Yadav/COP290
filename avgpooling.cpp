@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
-
+using namespace std;
 vector<vector<float>> avgpooling(vector<vector<float>> a, int k)
 {
 	int rows = a.size();

@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
-
+using namespace std;
 vector<vector<float> > convolveValid (vector<vector<float> > input, vector<vector<float> > filter)
 {
     int N = input.size();

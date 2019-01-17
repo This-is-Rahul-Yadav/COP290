@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include <string>
-
+using namespace std;
 vector<vector<float>> convolutionMULT(vector<vector<float>> a, vector<vector<float>> k)
 {
 	int arows=a.size();

@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 vector<vector<float>> MatrixMultiply(vector<vector<float>> a, vector<vector<float>> b)
 {
 	int arow=a.size();
