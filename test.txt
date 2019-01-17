@@ -1,0 +1,7 @@
+convolution_withoutpadding matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
+convolution_withpadding padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
+convolution_withoutpadding_matrixmul matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
+convolution_withpadding_matrixmul padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
+relu vector.txt elements_number
+tanh vector.txt elements_number
+average_pooling matrix1.txt matrix1_numrows 
