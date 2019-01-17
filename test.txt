@@ -4,4 +4,7 @@ convolution_withoutpadding_matrixmul matrix1.txt matrix1_numrows matrix2.txt mat
 convolution_withpadding_matrixmul padsize matrix1.txt matrix1_numrows matrix2.txt matrix2_numrows
 relu vector.txt elements_number
 tanh vector.txt elements_number
-average_pooling matrix1.txt matrix1_numrows 
+average_pooling matrix1.txt matrix1_numrows size
+max_pooling matrix1.txt matrix1_numrows size
+sigmoid vector.txt
+softmax vector.txt
