@@ -1,8 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include "mkl.h"
 #include <bits/stdc++.h>
 #include <stdio.h>
 #include <vector>
+#include <chrono>
+#include <string>
+
+using namespace std:: chrono;
 
 using namespace std;
 
@@ -25,6 +30,8 @@ using namespace std;
 //         input[i]= new float[n];
 vector<vector<float>> MatrixMultiplyMKL(vector<vector<float>> a,vector<vector<float>> b)
 {
+  auto start = high_resolution_clock::now();
+
   double inpA[a.size()*a[0].size()];
   double inpB[b.size()*a[0].size()];
   double C[a.size()*b[0].size()];
@@ -54,6 +61,14 @@ vector<vector<float>> MatrixMultiplyMKL(vector<vector<float>> a,vector<vector<fl
 			k++;
 		}
 	}
+
+  auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+  ofstream outFile;
+  string fileSize = to_string(a.size());
+  outFile.open("out"+fileSize+".dat", ios_base::app);
+  outFile << duration.count() <<endl;
+  outFile.close();
 
 	return matrix;
 

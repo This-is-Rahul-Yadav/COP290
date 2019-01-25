@@ -3,11 +3,15 @@
 #include <bits/stdc++.h>
 #include <stdio.h>
 #include <vector>
+#include <chrono>
+
+using namespace std:: chrono;
 
 using namespace std;
 
-vector<vector<float>> MatrixMultiplyMKL(vector<vector<float>> a,vector<vector<float>> b)
+vector<vector<float>> MatrixMultiplyOpenBLAS(vector<vector<float>> a,vector<vector<float>> b)
 {
+  auto start = high_resolution_clock::now();
   double inpA[a.size()*a[0].size()];
   double inpB[b.size()*a[0].size()];
   double C[a.size()*b[0].size()];
@@ -37,14 +41,15 @@ vector<vector<float>> MatrixMultiplyMKL(vector<vector<float>> a,vector<vector<fl
 			k++;
 		}
 	}
-
+  auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
 	return matrix;
 
 }
  int main()
  {
   	vector<vector<float> > in = { {1,0,0}, {0,1,0}, {0,0,1}};
-	  vector<vector<float> > ke = { {1,-2,0}, {-1,2,-1}, {1,2,0} };
+	  vector<vector<float> > ke = { {1,-2,0}, {-1,2,-1}, {1.6,2.54,0.76} };
     vector<vector<float> > vec=MatrixMultiplyMKL(in,ke);
     for (int i = 0; i < vec.size(); i++) {
        for (int j = 0; j < vec[i].size(); j++)
